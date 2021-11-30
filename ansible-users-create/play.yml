@@ -9,7 +9,8 @@
       loop: "{{USERS}}"
       register: out
 
-    - name: Print Password
-      debug:
-        msg: "{{out}}"
-        
+    - name: Add Users
+      user:
+        name: "{{item.item}}"
+        password: "{{item.ansible_facts.random_password}}"
+      loop: "{{out.results}}"
