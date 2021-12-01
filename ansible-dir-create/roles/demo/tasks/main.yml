@@ -1,3 +1,7 @@
-- name: Read a file line by line & put to list variable
-  debug: msg="{{item}}"
+- name: Read a file line by line & create directory
+  file:
+    path: "/opt/{{item}}"
+    state: directory
   loop: "{{ lookup('file', 'files/dir.txt').splitlines() }}"
+  become: yes
+
