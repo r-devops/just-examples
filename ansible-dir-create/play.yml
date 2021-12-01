@@ -1,0 +1,4 @@
+- name: Create dirs
+  hosts: localhost
+  roles:
+    - demo

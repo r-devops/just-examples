@@ -1,0 +1,3 @@
+- name: Read a file line by line & put to list variable
+  debug: msg="{{item}}"
+  loop: "{{ lookup('file', 'files/branches.txt').splitlines() }}"
