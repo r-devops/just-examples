@@ -1,12 +1,4 @@
 apiVersion: v1
-kind: Pod
+kind: Namespace
 metadata:
-  name: {{ .Values.podInfo.name }}
-  {{- with .Values.podLabels }}
-  labels:
-  {{- toYaml . | nindent 4 }}
-  {{- end }}
-spec:
-  containers:
-    - name: {{ .Values.podInfo.name }}
-      image: {{ .Values.podInfo.image }}
+  name: sample
