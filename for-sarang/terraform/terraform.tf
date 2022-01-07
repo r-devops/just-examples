@@ -1,13 +1,15 @@
-resource "kubernetes_namespace" "example" {
+resource "kubernetes_namespace" "namespace" {
   metadata {
     annotations = {
-      name = "example-annotation"
+      name = var.namespace
     }
 
     labels = {
       mylabel = "label-value"
     }
 
-    name = "terraform-example-namespace"
+    name = var.namespace
   }
 }
+
+variable "namespace" {}
