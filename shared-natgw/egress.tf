@@ -18,6 +18,7 @@ resource "aws_subnet" "egress-public" {
   count = 2
   vpc_id     = aws_vpc.egress.id
   cidr_block = var.egress_subnets_public[count.index]
+  availability_zone = var.azs[count.index]
 
   tags = {
     Name = "Egress-Public-AZ${count.index+1}"
@@ -28,6 +29,7 @@ resource "aws_subnet" "egress-private" {
   count = 2
   vpc_id     = aws_vpc.egress.id
   cidr_block = var.egress_subnets_private[count.index]
+  availability_zone = var.azs[count.index]
 
   tags = {
     Name = "Egress-Private-AZ${count.index+1}"

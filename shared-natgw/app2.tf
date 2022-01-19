@@ -10,6 +10,7 @@ resource "aws_subnet" "app2-private" {
   count = 2
   vpc_id     = aws_vpc.app2.id
   cidr_block = var.app2_subnets[count.index]
+  availability_zone = var.azs[count.index]
 
   tags = {
     Name = "App2-Private-AZ${count.index+1}"
