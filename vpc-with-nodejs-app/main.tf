@@ -15,5 +15,5 @@ module "vpc" {
 //}
 
 output "private" {
-  value = module.vpc["main"].subnets
+  value = module.vpc["main"].subnets["apps"].subnet_ids
 }
