@@ -7,12 +7,12 @@ module "vpc" {
   AZ = var.AZ
 }
 
-//module "eks" {
-//  source = "./eks"
-//  env = var.env
-//  PRIVATE_SUBNET_IDS =
-//  PUBLIC_SUBNET_IDS =
-//}
+module "eks" {
+  source = "./eks"
+  env = var.env
+  PRIVATE_SUBNET_IDS = module.vpc["main"].subnets["apps"].subnet_ids
+  PUBLIC_SUBNET_IDS = module.vpc["main"].subnets["public"].subnet_ids
+}
 
 output "private" {
   value = module.vpc["main"].subnets["apps"].subnet_ids
