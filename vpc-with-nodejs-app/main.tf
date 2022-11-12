@@ -7,3 +7,13 @@ module "vpc" {
   AZ = var.AZ
 }
 
+//module "eks" {
+//  source = "./eks"
+//  env = var.env
+//  PRIVATE_SUBNET_IDS =
+//  PUBLIC_SUBNET_IDS =
+//}
+
+output "private" {
+  value = module.vpc 
+}
