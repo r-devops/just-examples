@@ -36,3 +36,9 @@ Setup steps:
 3. `make terraform-apply` - Terraform Apply 
 4. `make app-deploy` - Deploy Helm Chart 
 
+
+Things can be improved.
+----
+
+1. Remote Terraform S3 statefile with DynamoDB locking 
+2. 
