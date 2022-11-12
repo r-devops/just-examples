@@ -1,5 +1,4 @@
-variable "cidr_block" {}
-variable "subnets" {}
+variable "vpc" {}
 variable "env" {}
 variable "AZ" {}
 
