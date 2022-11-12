@@ -27,7 +27,6 @@ module "routes" {
   nat_gateway_id            = aws_nat_gateway.ngw.id
   ngw                       = try(each.value["ngw"], false)
   igw                       = try(each.value["igw"], false)
-  default_vpc_cidr          = var.default_vpc_cidr
 }
 
 resource "aws_internet_gateway" "igw" {
