@@ -18,15 +18,15 @@ module "subnets" {
 }
 
 module "routes" {
-  for_each                  = var.subnets
-  source                    = "./routes"
-  vpc_id                    = aws_vpc.main.id
-  name                      = each.value["name"]
-  subnet_ids                = module.subnets
-  gateway_id                = aws_internet_gateway.igw.id
-  nat_gateway_id            = aws_nat_gateway.ngw.id
-  ngw                       = try(each.value["ngw"], false)
-  igw                       = try(each.value["igw"], false)
+  for_each       = var.subnets
+  source         = "./routes"
+  vpc_id         = aws_vpc.main.id
+  name           = each.value["name"]
+  subnet_ids     = module.subnets
+  gateway_id     = aws_internet_gateway.igw.id
+  nat_gateway_id = aws_nat_gateway.ngw.id
+  ngw            = try(each.value["ngw"], false)
+  igw            = try(each.value["igw"], false)
 }
 
 resource "aws_internet_gateway" "igw" {

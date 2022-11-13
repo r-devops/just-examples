@@ -283,7 +283,7 @@ resource "aws_iam_role" "oidc-role" {
 }
 
 resource "aws_iam_role_policy_attachment" "alb-role-attach" {
-  count       = var.create_alb_ingress ? 1 : 0
+  count      = var.create_alb_ingress ? 1 : 0
   role       = aws_iam_role.oidc-role.name
   policy_arn = aws_iam_policy.alb-serviceaccount-policy.*.arn[0]
 }
