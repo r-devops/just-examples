@@ -19,10 +19,11 @@ module "eks" {
   eks_version = each.value.version
 }
 
-//module "eks-addons" {
-//  depends_on = [ module.eks ]
-//
-//}
+module "eks-addons" {
+  depends_on = [ module.eks ]
+  source = "./addons"
+  create_alb_ingress = true
+}
 
 output "private" {
   value = module.vpc["main"].subnets["apps"].subnet_ids
