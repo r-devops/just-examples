@@ -12,6 +12,11 @@ module "eks" {
   env = var.env
   PRIVATE_SUBNET_IDS = module.vpc["main"].subnets["apps"].subnet_ids
   PUBLIC_SUBNET_IDS = module.vpc["main"].subnets["public"].subnet_ids
+  for_each = var.eks
+  size = each.value.size
+  type = each.value.type
+  node = each.value.node
+  version = each.value.version
 }
 
 output "private" {

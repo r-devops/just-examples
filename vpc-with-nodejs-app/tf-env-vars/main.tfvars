@@ -24,3 +24,12 @@ vpc = {
 env = "demo"
 AZ  = ["us-east-1a", "us-east-1b"]
 
+eks = {
+  main = {
+    version = "1.23"
+    node = ["t3.medium"]
+    type = "SPOT"
+    # all desired, max and min pointing to one since it is a small app
+    size = 1
+  }
+}
