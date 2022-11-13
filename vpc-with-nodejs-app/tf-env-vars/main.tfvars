@@ -33,3 +33,5 @@ eks = {
     size = 1
   }
 }
+
+eks_addons= {}
