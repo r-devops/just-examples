@@ -1,13 +1,3 @@
-resource "aws_ecr_repository" "demo-app" {
-  name                 = "demo-app"
-  image_tag_mutability = "MUTABLE"
-  force_delete = true 
-
-  image_scanning_configuration {
-    scan_on_push = true
-  }
-}
-
 resource "null_resource" "build" {
   triggers = {
     always = timestamp()
