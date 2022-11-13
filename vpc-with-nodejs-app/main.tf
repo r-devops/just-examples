@@ -19,7 +19,7 @@ module "eks" {
   eks_version = each.value.version
 }
 
-module "eks-addons" {
+module "eks_addons" {
   depends_on = [ module.eks ]
   source = "./addons"
   create_alb_ingress = true
