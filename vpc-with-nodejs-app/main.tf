@@ -16,7 +16,7 @@ module "eks" {
   size = each.value.size
   type = each.value.type
   node = each.value.node
-  version = each.value.version
+  eks_version = each.value.version
 }
 
 output "private" {

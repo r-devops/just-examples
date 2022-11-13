@@ -4,4 +4,4 @@ variable "PUBLIC_SUBNET_IDS" {}
 variable "size" {}
 variable "type" {}
 variable "node" {}
-variable "version" {}
+variable "eks_version" {}
