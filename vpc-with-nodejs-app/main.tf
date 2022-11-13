@@ -19,12 +19,16 @@ module "eks" {
   eks_version = each.value.version
 }
 
-module "leks_addons" {
+module "eks-addons" {
   depends_on = [ module.eks ]
-  for_each = var.eks_addons
   source = "./addons"
   create_alb_ingress = true
   env = var.env
+}
+
+module "app-build" {
+  depends_on = [ module.eks ]
+  source = "./app-build"
 }
 
 output "private" {
