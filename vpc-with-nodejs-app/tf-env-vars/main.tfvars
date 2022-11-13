@@ -34,4 +34,6 @@ eks = {
   }
 }
 
-eks_addons= {}
+eks_addons= {
+  main = {}
+}
