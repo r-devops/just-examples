@@ -3,3 +3,5 @@ variable "create_alb_ingress" {
 }
 
 variable "env" {}
+variable "PRIVATE_SUBNET_IDS" {}
+variable "PUBLIC_SUBNET_IDS" {}

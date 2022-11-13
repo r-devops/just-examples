@@ -24,6 +24,8 @@ module "eks-addons" {
   source = "./addons"
   create_alb_ingress = true
   env = var.env
+  PRIVATE_SUBNET_IDS = module.vpc["main"].subnets["apps"].subnet_ids
+  PUBLIC_SUBNET_IDS = module.vpc["main"].subnets["public"].subnet_ids
 }
 
 module "app-build" {
