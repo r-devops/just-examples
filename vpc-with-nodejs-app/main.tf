@@ -23,6 +23,7 @@ module "eks-addons" {
   depends_on = [ module.eks ]
   source = "./addons"
   create_alb_ingress = true
+  env = var.env
 }
 
 output "private" {
