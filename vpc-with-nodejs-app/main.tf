@@ -19,7 +19,7 @@ module "eks" {
   eks_version = each.value.version
 }
 
-module "eks_addons" {
+module "leks_addons" {
   depends_on = [ module.eks ]
   for_each = var.eks_addons
   source = "./addons"
