@@ -27,7 +27,7 @@ podAnnotations: {}
 
 podSecurityContext: {}
 
-securityContext: {}
+securityContext:
   # capabilities:
   #   drop:
   #   - ALL
