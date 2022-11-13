@@ -41,11 +41,6 @@ spec:
               port: {{ .Values.appPort}}
             initialDelaySeconds: 30
             periodSeconds: 5
-          {{- if .Values.externalSecret.enabled }}
-          envFrom:
-            - secretRef:
-                name: {{ .Values.componentName }}
-          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.appPort }}
