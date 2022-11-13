@@ -20,7 +20,7 @@ spec:
       labels:
         {{- include "demo.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "demo.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.componentName }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
