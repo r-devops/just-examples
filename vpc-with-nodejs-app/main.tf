@@ -31,6 +31,11 @@ module "app-build" {
   source = "./app-build"
 }
 
+module "app-deploy" {
+  depends_on = [ module.eks, module.app-build, module.eks-addons ]
+  source = "./app-build"
+}
+
 output "private" {
   value = module.vpc["main"].subnets["apps"].subnet_ids
 }

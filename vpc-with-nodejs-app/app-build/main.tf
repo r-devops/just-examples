@@ -11,6 +11,7 @@ resource "null_resource" "build" {
   triggers = {
     always = timestamp()
   }
+  depends_on = [aws_ecr_repository.demo-app]
   provisioner "local-exec" {
     command = <<EOF
 cd ${path.root}/app-source-code
