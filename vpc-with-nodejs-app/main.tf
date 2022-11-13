@@ -19,6 +19,11 @@ module "eks" {
   eks_version = each.value.version
 }
 
+//module "eks-addons" {
+//  depends_on = [ module.eks ]
+//
+//}
+
 output "private" {
   value = module.vpc["main"].subnets["apps"].subnet_ids
 }

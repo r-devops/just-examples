@@ -28,6 +28,7 @@ PRE-REQUISITES:
 2. Terraform 
 3. Docker 
 4. Helm 
+5. kubectl
 
 Setup steps:
 ----
