@@ -4,8 +4,4 @@ resource "null_resource" "get-kube-config" {
   }
 }
 
-provider "kubernetes" {
-  config_path    = "~/.kube/config"
-  config_context = data.aws_eks_cluster.eks.arn
-}
 

@@ -223,21 +223,6 @@ resource "aws_iam_policy" "alb-serviceaccount-policy" {
   })
 }
 
-resource "kubernetes_service_account" "alb-ingress-sa" {
-  depends_on = [null_resource.get-kube-config]
-  count = var.create_alb_ingress ? 1 : 0
-  metadata {
-    name      = "aws-load-balancer-controller"
-    namespace = "kube-system"
-    annotations = {
-      "eks.amazonaws.com/role-arn" = aws_iam_role.oidc-role.arn
-    }
-  }
-  automount_service_account_token = true
-}
-
-data "aws_caller_identity" "current" {}
-
 data "aws_iam_policy_document" "policy_document" {
   statement {
     actions = ["sts:AssumeRoleWithWebIdentity"]
@@ -282,14 +267,24 @@ resource "null_resource" "create-aws-ingress-crd" {
   }
 }
 
-resource "null_resource" "external-secrets-chart" {
-  triggers = {
-    a = timestamp()
+data "template_file" "alb-serviceaccount" {
+  template = file("${path.module}/alb-serviceaccount.yml")
+  vars = {
+    arn = aws_iam_role.oidc-role.arn
   }
-  depends_on = [null_resource.get-kube-config]
+}
+
+resource "local_file" "alb-serviceaccount" {
+  content  = data.template_file.alb-serviceaccount.rendered
+  filename = "/tmp/alb-serviceaccount.yml"
+}
+
+resource "null_resource" "external-secrets-chart" {
+  depends_on = [null_resource.get-kube-config, local_file.alb-serviceaccount]
   count      = var.create_alb_ingress ? 1 : 0
   provisioner "local-exec" {
     command = <<EOF
+kubectl apply -f /tmp/alb-serviceaccount.yml
 helm repo add eks https://aws.github.io/eks-charts
 helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller --set clusterName=${var.env}-eks-cluster --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller -n kube-system
 EOF
