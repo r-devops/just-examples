@@ -33,13 +33,15 @@ PRE-REQUISITES:
 Setup steps:
 ----
 1. Configure AWS Creds with `aws configure`
-2. `make build` - Builds Container Image from Dockerfile.
-3. `make terraform-apply` - Terraform Apply 
-4. `make app-deploy` - Deploy Helm Chart 
+2. `make terraform-apply` - To Configure end to end appliation
 
 
 Things can be improved.
 ----
 
 1. Remote Terraform S3 statefile with DynamoDB locking 
-2. 
+2. Secret Management with AWS Secret Manager 
+3. Parameters with AWS Parameter Store 
+4. Enable https with ALB over ingress 
+5. Enable AWS WAF over ALB.
+6. Container to run as nonroot user
