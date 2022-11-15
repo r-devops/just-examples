@@ -35,5 +35,5 @@ module "app-build" {
 
 module "app-deploy" {
   depends_on = [module.eks, module.app-build, module.eks-addons]
-  source     = "./app-build"
+  source     = "./app-deploy"
 }
